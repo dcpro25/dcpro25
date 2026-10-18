@@ -437,98 +437,112 @@ export const DEFAULT_SITE_IMAGES: Record<string, SiteImageConfig> = {
     title: '상단 & 하단 로고 이미지 (1080 × 1080px)',
     category: '브랜드 로고',
     description: '헤더 상단 로고 및 푸터 하단 브랜드 표시 마크 (권장 규격: 1080 × 1080px)',
-    defaultUrl: '/logo.svg',
+    defaultUrl:
+      'https://postfiles.pstatic.net/MjAyNjEwMTZfMTM0/MDAxNzkyMTQxNTIyODM1.E_JH4eJ73SO_CZWwcjnhfmP1jg6poCWacCcIxiPg03Yg.x1UuTJlTKM42fpTV8L3By-y4gcEnxDYfyuOgerXXGxMg.JPEG/%EB%84%A4%EC%9D%B4%EB%B2%84%EB%B8%94%EB%A1%9C%EA%B7%B8_%ED%8F%AC%EC%8A%A4%ED%8C%85_(3).jpg?type=w3840',
   },
   hero_main: {
     key: 'hero_main',
     title: '메인 화면 히어로 대표 세척 사진 1',
     category: '메인 화면',
     description: '홈페이지 최상단 대표 세척 현장 사진 1',
-    defaultUrl: buildingDroneWashImg,
+    defaultUrl:
+      'https://postfiles.pstatic.net/MjAyNjA3MjdfMjI1/MDAxNzg1MTMyODgwMjMy.gTJ8dZly1LeGC5nrDnP1pmNhVMQ0QgPtcv-TmlGrI8Mg.iHu_9LkxVicZykH9swb-7_EbhWWhf2-vMdvlM-MY1G4g.GIF/20260402_081505(1).gif?type=w3840',
   },
   hero_main_2: {
     key: 'hero_main_2',
     title: '메인 화면 히어로 대표 세척 사진 2',
     category: '메인 화면',
     description: '홈페이지 최상단 대표 세척 현장 사진 2',
-    defaultUrl: droneHeroCleaningImg,
+    defaultUrl:
+      'https://postfiles.pstatic.net/MjAyNjEwMTZfMTA4/MDAxNzkyMTQxMjk3NTE5.ibkZMJxa5ijWKsD58wsinc0t2y5ewJl80q9WMmQBbp0g.KIMlHtEhBxAdLKlac4AeBaaRa7a-mRfb1wlia3AXT2Eg.GIF/1015_(1)(1)-1(1).gif?type=w3840',
   },
   service_01: {
     key: 'service_01',
     title: '01. 건축물 외벽 세척 카탈로그 사진',
     category: '주요 세척 서비스',
     description: '주요 사업 영역 - 01. 건축물 외벽 세척 대표 카드 이미지',
-    defaultUrl: aisoDroneRealPhotoImg,
+    defaultUrl:
+      'https://postfiles.pstatic.net/MjAyNjA3MjRfMjg1/MDAxNzg0ODgwODMyMjY2.iwMAp6jq8k1JRLR_eM3YKBOcB3KDYxjFutBl5UO3tUAg.2tx7MSIqaGpwIPrj6gURfd8wPr6ttFZXERWBQij93I0g.PNG/SE-2afd47af-c21f-4fde-8549-af01b0bbd34f.png?type=w3840',
   },
   service_02: {
     key: 'service_02',
     title: '02. 태양광 패널 클리닝 카탈로그 사진',
     category: '주요 세척 서비스',
     description: '주요 사업 영역 - 02. 태양광 패널 클리닝 대표 카드 이미지',
-    defaultUrl: solarPanelCleaningImg,
+    defaultUrl:
+      'https://postfiles.pstatic.net/MjAyNjA3MjRfNDYg/MDAxNzg0ODgwODMzNjcw.8SgKHg0r_6EeccoJwCd76UWD_7y3QBZY1VBrbO1c7sYg.kI_VlsQMPnje5B99yF-hByFdg8omlv0AffnGMhIqrWEg.PNG/SE-480994cf-d9e3-48e6-a8af-e9dfaf4198ae.png?type=w3840',
   },
   service_03: {
     key: 'service_03',
     title: '03. 유리창 세척 카탈로그 사진',
     category: '주요 세척 서비스',
     description: '주요 사업 영역 - 03. 유리창 세척 대표 카드 이미지',
-    defaultUrl: purewaterTechWashImg,
+    defaultUrl:
+      'https://postfiles.pstatic.net/MjAyNjA3MjRfMTQ5/MDAxNzg0ODc5MjU3OTUw.YjMtkSOl7V3MMLbiV3pU5DZN_J4jW-OjxrPbx1b2aCcg.jltowrm7Mp8B2y7BoGpigdadvAhn34AYEajdzeD10wcg.PNG/3.%EC%9C%A0%EB%A6%AC%EC%B0%BD.png?type=w3840',
   },
   service_04: {
     key: 'service_04',
     title: '04. 재도장 전 고압세척 카탈로그 사진',
     category: '주요 세척 서비스',
     description: '주요 사업 영역 - 04. 재도장 전 고압세척 대표 카드 이미지',
-    defaultUrl: carWashPressureWaterImg,
+    defaultUrl:
+      'https://postfiles.pstatic.net/MjAyNjEwMTZfMTQg/MDAxNzkyMTQxNzA5OTgz.W7INkS0WTpEdYOUIwKgBoUDmJb356Wgxh1V4VWIHGhsg.coRn4IvYt1Im7AeVC7zoqgFzshs7pDPjtG2IdN_1Nqgg.JPEG/BLN_MRZ_-_Simone_Hutsch.jpeg?type=w3840',
   },
   tech_nozzle: {
     key: 'tech_nozzle',
     title: '기술소개 01. 드론 전용 특수 노즐 사진',
     category: '특허 및 기술 소개',
     description: '특허 기술 01 - 드론클린프로 자체개발 드론 전용 특수 노즐 사진',
-    defaultUrl: droneHeroCleaningImg,
+    defaultUrl:
+      'https://postfiles.pstatic.net/MjAyNjEwMTZfMTA4/MDAxNzkyMTQxMjk3NTE5.ibkZMJxa5ijWKsD58wsinc0t2y5ewJl80q9WMmQBbp0g.KIMlHtEhBxAdLKlac4AeBaaRa7a-mRfb1wlia3AXT2Eg.GIF/1015_(1)(1)-1(1).gif?type=w3840',
   },
   tech_tethered: {
     key: 'tech_tethered',
     title: '기술소개 02. 수직하향계류식 드론 구조 사진',
     category: '특허 및 기술 소개',
     description: '특허 기술 02 - 수직하향계류방식 특허 드론 구조 및 현장 사진',
-    defaultUrl: tetheredDroneDiagramImg,
+    defaultUrl:
+      'https://postfiles.pstatic.net/MjAyNjA3MjRfMjA2/MDAxNzg0ODgxNDkxMTgz.y56ZYLUua-Mjt59DGLoUlbPxLnXbWfoTUbyibmx5oDQg.M8opZUXLQ2rBYlrdcT0vf8aIWGg89N4zd51a6hR3020g.PNG/image_(1).png?type=w3840',
   },
   tech_carwash: {
     key: 'tech_carwash',
     title: '기술소개 03. 일반 세차장/고압세척기 비교 사진',
     category: '특허 및 기술 소개',
     description: '특허 기술 03 - 일반 세차장 스펙 비교 카드 사진',
-    defaultUrl: carWashPressureWaterImg,
+    defaultUrl:
+      'https://postfiles.pstatic.net/MjAyNjEwMTZfMTc5/MDAxNzkyMTQxODAxOTIz.jXlk_KMm5xAfLFYRzFzQYjUXoMEfkunwLcSP_tfwJZwg.dnGZRuu6kVvvp4oAr2Y-b4-5rwDE4Vvm-Z5575Q-imMg.PNG/053448aa-1a33-4cc6-9d2f-6812eed2433f.png?type=w3840',
   },
   tech_carwash_sub: {
     key: 'tech_carwash_sub',
     title: '기술소개 03. 드론클린프로 고압세척 현장 사진',
     category: '특허 및 기술 소개',
     description: '특허 기술 03 - 산업용 드론클린프로 고압세척 현장 카드 사진',
-    defaultUrl: droneHeroCleaningImg,
+    defaultUrl:
+      'https://postfiles.pstatic.net/MjAyNjA3MjRfMjg1/MDAxNzg0ODgwODMyMjY2.iwMAp6jq8k1JRLR_eM3YKBOcB3KDYxjFutBl5UO3tUAg.2tx7MSIqaGpwIPrj6gURfd8wPr6ttFZXERWBQij93I0g.PNG/SE-2afd47af-c21f-4fde-8549-af01b0bbd34f.png?type=w3840',
   },
   tech_purewater: {
     key: 'tech_purewater',
     title: '기술소개 04. 초순수 퓨어워터 세척 현장 사진',
     category: '특허 및 기술 소개',
     description: '특허 기술 04 - 퓨어워터 정제 세척 현장 사진',
-    defaultUrl: purewaterTechWashImg,
+    defaultUrl:
+      'https://postfiles.pstatic.net/MjAyNjA3MjRfMjc4/MDAxNzg0ODgxMzQ4Mjgw.WFPP0unK5WCGq3qYjQ8lJXFmM22sHfPT4f2WJE_7Gtcg.2JBOTdvtLt9cEUPWQ1rgrW2zXsAHAfcXaf5gR8b7R3Ag.PNG/ChatGPT_Image_2026%EB%85%84_5%EC%9B%94_19%EC%9D%BC_%EC%98%A4%ED%9B%84_05_04_49.png?type=w3840',
   },
   modal_building: {
     key: 'modal_building',
     title: '세척 비교 슬라이더: 건물 외벽 세척 전/후 사진',
     category: '서비스 상세 팝업',
     description: '서비스 소개 팝업 내 건물 외벽 세척 비포/애프터 비교 이미지',
-    defaultUrl: droneHeroCleaningImg,
+    defaultUrl:
+      'https://postfiles.pstatic.net/MjAyNjA3MjRfMjc0/MDAxNzg0ODgyNzE5ODUz.dWhOPNzDpoJx5yUyQYLdpi1d340z7FXApC3Ta2fUfksg.fR82Voz5qJc5TSDmsap139GoFFxH99JhHW8v5V9R08Ag.PNG/image.png?type=w3840',
   },
   modal_solar: {
     key: 'modal_solar',
     title: '세척 비교 슬라이더: 태양광 패널 세척 전/후 사진',
     category: '서비스 상세 팝업',
     description: '서비스 소개 팝업 내 태양광 패널 세척 비포/애프터 비교 이미지',
-    defaultUrl: solarPanelCleaningImg,
+    defaultUrl:
+      'https://postfiles.pstatic.net/MjAyNjA3MjRfMTYg/MDAxNzg0ODgyNTc3NTM3.XuxeJ1S7h-TBJRwoT9hDGLWkXv9ptmz42-8gq8Xph5kg.4Uad_x5CHNEaQR3OggOhjke2I07FCcT8yS9t_MgQw5Qg.PNG/image.png?type=w3840',
   },
 };
 
