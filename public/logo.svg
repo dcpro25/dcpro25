@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 450" fill="none">
+  <!-- Background transparent, shapes rendered in white or current text color -->
+  <g fill="#FFFFFF" stroke="#FFFFFF" stroke-linejoin="round" stroke-linecap="round">
+    
+    <!-- Top Left Rotor Bar & Mount -->
+    <path d="M 35 65 L 145 65 M 100 65 L 100 130" stroke-width="12" />
+    
+    <!-- Top Right Rotor Bar & Mount -->
+    <path d="M 355 65 L 465 65 M 400 65 L 400 130" stroke-width="12" />
+
+    <!-- Drone Main Upper Arms sweeping down to center -->
+    <path d="M 100 130 Q 180 180 230 190 M 400 130 Q 320 180 270 190" stroke-width="14" fill="none" />
+
+    <!-- Water Droplet Icon at Center -->
+    <path d="M 250 110 C 230 145 220 165 220 185 C 220 205 233 220 250 220 C 267 220 280 205 280 185 C 280 165 270 145 250 110 Z" fill="#FFFFFF" stroke="none" />
+    <path d="M 250 135 C 242 155 236 170 236 182 C 236 193 242 202 250 202 C 258 202 264 193 264 182 C 264 170 258 155 250 135 Z" fill="#0b1329" stroke="none" />
+
+    <!-- X-Cross Arms connecting below Water Drop -->
+    <path d="M 230 200 L 285 240 M 270 200 L 215 240" stroke-width="12" fill="none" />
+
+    <!-- Outer Frame & Building Outlines -->
+    <!-- Left Outer Frame extending down and forming left building base -->
+    <path d="M 100 130 L 100 370 Q 100 395 125 408 L 230 435 Q 235 437 235 420 L 235 240 Q 235 230 220 238 L 135 290 Q 130 293 130 305 L 130 370" stroke-width="14" fill="none" />
+
+    <!-- Left Building Window Slashes -->
+    <rect x="165" y="295" width="20" height="10" rx="2" fill="#FFFFFF" stroke="none" />
+    <rect x="165" y="320" width="20" height="10" rx="2" fill="#FFFFFF" stroke="none" />
+    <rect x="165" y="345" width="20" height="10" rx="2" fill="#FFFFFF" stroke="none" />
+
+    <!-- Right Outer Frame extending down and forming right building base -->
+    <path d="M 400 130 L 400 370 Q 400 395 375 408 L 270 435 Q 265 437 265 420 L 265 240 Q 265 230 280 238 L 365 290 Q 370 293 370 305 L 370 370" stroke-width="14" fill="none" />
+
+    <!-- Right Building Vertical Stripes -->
+    <line x1="290" y1="220" x2="290" y2="280" stroke-width="8" stroke-linecap="round" />
+    <line x1="305" y1="220" x2="305" y2="280" stroke-width="8" stroke-linecap="round" />
+    <line x1="320" y1="220" x2="320" y2="280" stroke-width="8" stroke-linecap="round" />
+
+    <!-- Sparkle Stars (4-point Glint) -->
+    <!-- Sparkle 1 (Left Building top) -->
+    <path d="M 160 210 Q 160 200 150 200 Q 160 200 160 190 Q 160 200 170 200 Q 160 200 160 210 Z" fill="#FFFFFF" stroke="none" />
+    <!-- Sparkle 2 (Right Building lower) -->
+    <path d="M 330 325 Q 330 315 320 315 Q 330 315 330 305 Q 330 315 340 315 Q 330 315 330 325 Z" fill="#FFFFFF" stroke="none" />
+
+  </g>
+</svg>

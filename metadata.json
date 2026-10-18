@@ -1,0 +1,6 @@
+{
+  "name": "DRONE CLEAN PRO (드론클린프로)",
+  "description": "B2B 드론 외벽/태양광/유리창/재도장 세척 전문 원페이지 랜딩페이지 - 중대재해 차단 및 비용 30~50% 절감",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
