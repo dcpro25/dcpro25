@@ -489,7 +489,19 @@ export default function EducationPage({
 {`“단순한 비행 교육이 아닙니다.
 실제 드론 세척 현장에서 사용하는 방법을 배웁니다.”`}
                 </h4>
-                <p className="text-xs sm:text-sm text-slate-300 whitespace-pre-line leading-relaxed">
+                <p
+                  style={{
+                    marginRight: '-200px',
+                    borderStyle: 'solid',
+                    lineHeight: '22.75px',
+                    paddingLeft: '1px',
+                    marginBottom: '0px',
+                    textAlign: 'left',
+                    fontSize: '14px',
+                    height: '49.5128px',
+                  }}
+                  className="text-slate-300 whitespace-pre-line leading-relaxed"
+                >
 {`실제 현장에서 사용하는 장비와 작업방법부터
 세척, 현장 운영, 견적까지 직접 경험해보세요.`}
                 </p>

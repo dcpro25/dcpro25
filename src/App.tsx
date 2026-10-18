@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import buildingDroneWashImg from './assets/images/building_drone_wash_1784877433334.jpg';
 import aisoDroneRealPhotoImg from './assets/images/aiso_drone_real_photo_1784877676972.jpg';
 import solarPanelCleaningImg from './assets/images/solar_panel_cleaning_1784697053787.jpg';
@@ -53,6 +53,7 @@ import {
   Loader2,
   Image as ImageIcon,
   Upload,
+  Download,
   Trash2,
   Camera,
   RotateCcw,
@@ -921,6 +922,7 @@ function ImageManagerModal({
   onUpdateImage,
   onResetImage,
   onResetAllImages,
+  onBatchImportImages,
   focusedKey,
 }: {
   isOpen: boolean;
@@ -929,10 +931,12 @@ function ImageManagerModal({
   onUpdateImage: (key: string, newUrl: string) => void;
   onResetImage: (key: string) => void;
   onResetAllImages: () => void;
+  onBatchImportImages?: (imported: Record<string, string>) => void;
   focusedKey: string | null;
 }) {
   const [selectedCategory, setSelectedCategory] = useState<string>('전체');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const backupFileInputRef = useRef<HTMLInputElement>(null);
 
   if (!isOpen) return null;
 
@@ -950,8 +954,70 @@ function ImageManagerModal({
     return matchesCat && matchesQuery;
   });
 
+  const handleExportBackup = () => {
+    try {
+      const backupData = {
+        app: 'DRONE_CLEAN_PRO',
+        exportedAt: new Date().toISOString(),
+        siteImages,
+      };
+      const blob = new Blob([JSON.stringify(backupData, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `dronecleanpro-images-backup-${new Date().toISOString().slice(0, 10)}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      alert('백업 파일 생성 중 오류가 발생했습니다.');
+    }
+  };
+
+  const handleImportBackupFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const text = event.target?.result as string;
+        const parsed = JSON.parse(text);
+        const imagesToImport = parsed.siteImages || parsed.images || parsed;
+        if (typeof imagesToImport === 'object' && imagesToImport !== null) {
+          if (onBatchImportImages) {
+            onBatchImportImages(imagesToImport);
+          } else {
+            for (const [k, v] of Object.entries(imagesToImport)) {
+              if (typeof v === 'string') {
+                onUpdateImage(k, v);
+              }
+            }
+          }
+          alert('설정 백업 파일이 성공적으로 복원되고 서버에 영구 동기화되었습니다.');
+        } else {
+          alert('올바른 이미지 설정 백업 JSON 파일이 아닙니다.');
+        }
+      } catch (err) {
+        alert('백업 파일을 읽는 중 오류가 발생했습니다. 올바른 JSON 파일인지 확인해 주세요.');
+      }
+    };
+    reader.readAsText(file);
+    if (e.target) e.target.value = '';
+  };
+
   return (
     <div className="fixed inset-0 z-[100] bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto animate-fadeIn">
+      {/* Hidden file input for backup restoration */}
+      <input
+        type="file"
+        ref={backupFileInputRef}
+        onChange={handleImportBackupFile}
+        accept=".json"
+        className="hidden"
+      />
+
       <div className="bg-white w-full max-w-5xl rounded-3xl shadow-2xl border border-slate-200 overflow-hidden my-auto max-h-[90vh] flex flex-col">
         {/* Modal Header */}
         <div className="bg-[#0b1329] text-white p-5 sm:p-6 flex items-center justify-between border-b border-slate-800 shrink-0">
@@ -960,14 +1026,18 @@ function ImageManagerModal({
               <Camera className="w-6 h-6 text-white" />
             </div>
             <div>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">사이트 게시 사진 & 이미지 관리자</h2>
                 <span className="px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-200 border border-slate-700 text-[11px] font-bold">
                   관리자 권한
                 </span>
+                <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[11px] font-bold flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  서버 영구 보존 활성화 (배포 및 공유 링크 동기화)
+                </span>
               </div>
               <p className="text-xs text-slate-300 mt-0.5 font-medium">
-                사이트 내 모든 대표 사진 및 로고를 1080 × 1080px 최적 규격으로 컴퓨터 파일(PNG, GIF/JIF, JPG) 업로드 또는 웹 이미지 URL 입력으로 바로 교체할 수 있습니다.
+                사이트 내 모든 대표 사진 및 로고를 교체할 수 있습니다. 변경된 사진은 서버에 영구 보존되어 공유 링크 및 배포 환경에서도 모든 방문자에게 그대로 표시됩니다.
               </p>
             </div>
           </div>
@@ -1040,20 +1110,45 @@ function ImageManagerModal({
 
         {/* Modal Footer */}
         <div className="p-4 bg-slate-100 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3 shrink-0">
-          <button
-            onClick={onResetAllImages}
-            className="px-3.5 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold text-xs border border-rose-200 flex items-center gap-1.5 transition-all cursor-pointer"
-          >
-            <RotateCcw className="w-3.5 h-3.5 text-rose-600" />
-            <span>모든 사진 원본 기본값으로 초기화</span>
-          </button>
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              onClick={onResetAllImages}
+              className="px-3.5 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold text-xs border border-rose-200 flex items-center gap-1.5 transition-all cursor-pointer"
+            >
+              <RotateCcw className="w-3.5 h-3.5 text-rose-600" />
+              <span>전체 원본 초기화</span>
+            </button>
 
-          <button
-            onClick={onClose}
-            className="px-6 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs shadow transition-all cursor-pointer"
-          >
-            닫기
-          </button>
+            <button
+              onClick={handleExportBackup}
+              className="px-3.5 py-2 rounded-xl bg-blue-50 hover:bg-blue-100 text-[#1d61e8] font-bold text-xs border border-blue-200 flex items-center gap-1.5 transition-all cursor-pointer"
+              title="현재 설정된 모든 사진 URL/데이터를 JSON 파일로 내보내어 안전하게 백업합니다."
+            >
+              <Download className="w-3.5 h-3.5 text-[#1d61e8]" />
+              <span>설정 백업 (JSON)</span>
+            </button>
+
+            <button
+              onClick={() => backupFileInputRef.current?.click()}
+              className="px-3.5 py-2 rounded-xl bg-white hover:bg-slate-50 text-slate-700 font-bold text-xs border border-slate-300 flex items-center gap-1.5 transition-all cursor-pointer"
+              title="이전에 백업해 둔 JSON 설정 파일을 불러와 모든 사진을 즉시 복원합니다."
+            >
+              <Upload className="w-3.5 h-3.5 text-slate-600" />
+              <span>설정 복원 (JSON)</span>
+            </button>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <span className="hidden md:inline-block text-[11px] text-slate-500 font-medium">
+              ※ 서버 영구 저장 및 배포 환경 동기화 적용 중
+            </span>
+            <button
+              onClick={onClose}
+              className="px-6 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs shadow transition-all cursor-pointer"
+            >
+              닫기
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -1109,7 +1204,7 @@ export default function App() {
   const [deleteTargetId, setDeleteTargetId] = useState<string | null>(null);
   const [adminToastMessage, setAdminToastMessage] = useState<string | null>(null);
 
-  // Site Images State (persisted in localStorage)
+  // Site Images State (persisted in localStorage and Server)
   const [siteImages, setSiteImages] = useState<Record<string, string>>(() => {
     const saved = safeLocalStorageGet('dronecleanpro_site_images');
     if (saved) {
@@ -1129,6 +1224,62 @@ export default function App() {
     return initial;
   });
 
+  // Fetch persistent site images from the server on startup & sync with server
+  useEffect(() => {
+    let isMounted = true;
+    const syncSiteImagesWithServer = async () => {
+      try {
+        const res = await fetch('/api/site-images');
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data.success && data.images && isMounted) {
+          const serverImages = data.images as Record<string, string>;
+          const serverKeys = Object.keys(serverImages);
+
+          if (serverKeys.length > 0) {
+            // Apply server images to state and update localStorage cache
+            setSiteImages((prev) => {
+              const merged = { ...prev, ...serverImages };
+              safeLocalStorageSet('dronecleanpro_site_images', JSON.stringify(merged));
+              return merged;
+            });
+          } else {
+            // Server has no saved images yet; check if current client has customized images in localStorage
+            const localSaved = safeLocalStorageGet('dronecleanpro_site_images');
+            if (localSaved) {
+              try {
+                const parsed = JSON.parse(localSaved);
+                if (typeof parsed === 'object' && parsed !== null && Object.keys(parsed).length > 0) {
+                  // Push client's custom images to server so they are permanently saved!
+                  fetch('/api/site-images', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ images: parsed }),
+                  })
+                    .then((r) => r.json())
+                    .then((d) => {
+                      if (d.success && d.images && isMounted) {
+                        setSiteImages((prev) => ({ ...prev, ...d.images }));
+                        safeLocalStorageSet('dronecleanpro_site_images', JSON.stringify(d.images));
+                      }
+                    })
+                    .catch((err) => console.warn('[Storage] Auto-sync to server failed:', err));
+                }
+              } catch (_) {}
+            }
+          }
+        }
+      } catch (err) {
+        console.warn('[Storage] Failed to fetch site images from server:', err);
+      }
+    };
+
+    syncSiteImagesWithServer();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   const [showImageManagerModal, setShowImageManagerModal] = useState(false);
   const [focusedImageSlotKey, setFocusedImageSlotKey] = useState<string | null>(null);
 
@@ -1136,27 +1287,99 @@ export default function App() {
     return siteImages[key] || DEFAULT_SITE_IMAGES[key]?.defaultUrl || '';
   };
 
-  const handleUpdateSiteImage = (key: string, newUrl: string) => {
+  const handleUpdateSiteImage = async (key: string, newUrl: string) => {
+    const title = DEFAULT_SITE_IMAGES[key]?.title || key;
+
+    // 1. Optimistic UI update
     const updated = { ...siteImages, [key]: newUrl };
     setSiteImages(updated);
-    const saved = safeLocalStorageSet('dronecleanpro_site_images', JSON.stringify(updated));
-    const title = DEFAULT_SITE_IMAGES[key]?.title || key;
-    if (!saved) {
-      setAdminToastMessage(`'${title}' 사진이 변경되었습니다. (용량 제한으로 현재 세션에만 임시 적용됩니다)`);
-    } else {
-      setAdminToastMessage(`'${title}' 사진이 성공적으로 업데이트되었습니다.`);
+    safeLocalStorageSet('dronecleanpro_site_images', JSON.stringify(updated));
+
+    setAdminToastMessage(`'${title}' 사진 저장 중...`);
+
+    // 2. Persist to server
+    try {
+      if (newUrl.startsWith('data:')) {
+        const uploadRes = await fetch('/api/upload-image', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ key, dataUrl: newUrl }),
+        });
+        const uploadData = await uploadRes.json();
+        if (uploadData.success && uploadData.url) {
+          const finalUrl = uploadData.url;
+          setSiteImages((prev) => {
+            const next = { ...prev, [key]: finalUrl };
+            safeLocalStorageSet('dronecleanpro_site_images', JSON.stringify(next));
+            return next;
+          });
+          setAdminToastMessage(`'${title}' 사진이 서버에 영구 보존되었습니다. (공유 링크 및 모든 방문자에게 즉시 반영)`);
+        } else {
+          setAdminToastMessage(`'${title}' 사진이 저장되었습니다.`);
+        }
+      } else {
+        await fetch('/api/site-images', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ images: { [key]: newUrl } }),
+        });
+        setAdminToastMessage(`'${title}' 사진이 서버에 영구 보존되었습니다. (공유 링크 및 모든 방문자에게 즉시 반영)`);
+      }
+    } catch (err) {
+      console.warn('[Storage] Failed to persist image to server:', err);
+      setAdminToastMessage(`'${title}' 사진이 브라우저에 저장되었습니다.`);
     }
+
     setTimeout(() => setAdminToastMessage(null), 3500);
   };
 
-  const handleResetSiteImage = (key: string) => {
-    const defaultUrl = DEFAULT_SITE_IMAGES[key]?.defaultUrl;
-    if (defaultUrl) {
-      handleUpdateSiteImage(key, defaultUrl);
+  const handleBatchImportImages = async (imported: Record<string, string>) => {
+    try {
+      const merged = { ...siteImages, ...imported };
+      setSiteImages(merged);
+      safeLocalStorageSet('dronecleanpro_site_images', JSON.stringify(merged));
+
+      const res = await fetch('/api/site-images', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ images: imported }),
+      });
+      const data = await res.json();
+      if (data.success && data.images) {
+        setSiteImages((prev) => ({ ...prev, ...data.images }));
+        safeLocalStorageSet('dronecleanpro_site_images', JSON.stringify(data.images));
+      }
+      setAdminToastMessage('백업 사진 설정이 성공적으로 복원되고 서버에 영구 동기화되었습니다.');
+      setTimeout(() => setAdminToastMessage(null), 3500);
+    } catch (e) {
+      setAdminToastMessage('설정 복원 중 오류가 발생했습니다.');
+      setTimeout(() => setAdminToastMessage(null), 3500);
     }
   };
 
-  const handleResetAllSiteImages = () => {
+  const handleResetSiteImage = async (key: string) => {
+    const defaultUrl = DEFAULT_SITE_IMAGES[key]?.defaultUrl;
+    if (defaultUrl) {
+      const updated = { ...siteImages };
+      delete updated[key];
+      setSiteImages(updated);
+      safeLocalStorageSet('dronecleanpro_site_images', JSON.stringify(updated));
+
+      try {
+        await fetch('/api/site-images/reset', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ key }),
+        });
+      } catch (e) {
+        console.warn('[Storage] Reset failed on server:', e);
+      }
+      setAdminToastMessage(`'${DEFAULT_SITE_IMAGES[key]?.title || key}' 사진이 기본 원본으로 복원되었습니다.`);
+      setTimeout(() => setAdminToastMessage(null), 3500);
+    }
+  };
+
+  const handleResetAllSiteImages = async () => {
     if (confirm('사이트의 모든 게시 사진을 초기 원본 상태로 복원하시겠습니까?')) {
       const initial: Record<string, string> = {};
       Object.keys(DEFAULT_SITE_IMAGES).forEach((k) => {
@@ -1164,6 +1387,16 @@ export default function App() {
       });
       setSiteImages(initial);
       safeLocalStorageRemove('dronecleanpro_site_images');
+
+      try {
+        await fetch('/api/site-images/reset', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({}),
+        });
+      } catch (e) {
+        console.warn('[Storage] Reset all failed on server:', e);
+      }
       setAdminToastMessage('모든 사진이 초기 원본 상태로 초기화되었습니다.');
       setTimeout(() => setAdminToastMessage(null), 3500);
     }
@@ -4460,6 +4693,7 @@ export default function App() {
         onUpdateImage={handleUpdateSiteImage}
         onResetImage={handleResetSiteImage}
         onResetAllImages={handleResetAllSiteImages}
+        onBatchImportImages={handleBatchImportImages}
         focusedKey={focusedImageSlotKey}
       />
 
