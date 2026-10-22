@@ -6,6 +6,7 @@ import purewaterTechWashImg from './assets/images/purewater_tech_wash_1784686327
 import carWashPressureWaterImg from './assets/images/car_wash_pressure_water_1784697034670.jpg';
 import tetheredDroneDiagramImg from './assets/images/tethered_drone_diagram_1784697741824.jpg';
 import droneHeroCleaningImg from './assets/images/drone_hero_cleaning_1784686301201.jpg';
+import logoIconImg from './assets/images/logo_icon_1784876769539.jpg';
 import {
   ShieldCheck,
   Sparkles,
@@ -65,7 +66,9 @@ import {
   ClipboardList,
   ArrowUp,
   GraduationCap,
-  PhoneCall
+  PhoneCall,
+  Menu,
+  ArrowRightLeft
 } from 'lucide-react';
 import EducationPage from './EducationPage';
 
@@ -437,112 +440,98 @@ export const DEFAULT_SITE_IMAGES: Record<string, SiteImageConfig> = {
     title: '상단 & 하단 로고 이미지 (1080 × 1080px)',
     category: '브랜드 로고',
     description: '헤더 상단 로고 및 푸터 하단 브랜드 표시 마크 (권장 규격: 1080 × 1080px)',
-    defaultUrl:
-      'https://postfiles.pstatic.net/MjAyNjEwMTZfMTM0/MDAxNzkyMTQxNTIyODM1.E_JH4eJ73SO_CZWwcjnhfmP1jg6poCWacCcIxiPg03Yg.x1UuTJlTKM42fpTV8L3By-y4gcEnxDYfyuOgerXXGxMg.JPEG/%EB%84%A4%EC%9D%B4%EB%B2%84%EB%B8%94%EB%A1%9C%EA%B7%B8_%ED%8F%AC%EC%8A%A4%ED%8C%85_(3).jpg?type=w3840',
+    defaultUrl: logoIconImg,
   },
   hero_main: {
     key: 'hero_main',
     title: '메인 화면 히어로 대표 세척 사진 1',
     category: '메인 화면',
     description: '홈페이지 최상단 대표 세척 현장 사진 1',
-    defaultUrl:
-      'https://postfiles.pstatic.net/MjAyNjA3MjdfMjI1/MDAxNzg1MTMyODgwMjMy.gTJ8dZly1LeGC5nrDnP1pmNhVMQ0QgPtcv-TmlGrI8Mg.iHu_9LkxVicZykH9swb-7_EbhWWhf2-vMdvlM-MY1G4g.GIF/20260402_081505(1).gif?type=w3840',
+    defaultUrl: buildingDroneWashImg,
   },
   hero_main_2: {
     key: 'hero_main_2',
     title: '메인 화면 히어로 대표 세척 사진 2',
     category: '메인 화면',
     description: '홈페이지 최상단 대표 세척 현장 사진 2',
-    defaultUrl:
-      'https://postfiles.pstatic.net/MjAyNjEwMTZfMTA4/MDAxNzkyMTQxMjk3NTE5.ibkZMJxa5ijWKsD58wsinc0t2y5ewJl80q9WMmQBbp0g.KIMlHtEhBxAdLKlac4AeBaaRa7a-mRfb1wlia3AXT2Eg.GIF/1015_(1)(1)-1(1).gif?type=w3840',
+    defaultUrl: droneHeroCleaningImg,
   },
   service_01: {
     key: 'service_01',
     title: '01. 건축물 외벽 세척 카탈로그 사진',
     category: '주요 세척 서비스',
     description: '주요 사업 영역 - 01. 건축물 외벽 세척 대표 카드 이미지',
-    defaultUrl:
-      'https://postfiles.pstatic.net/MjAyNjA3MjRfMjg1/MDAxNzg0ODgwODMyMjY2.iwMAp6jq8k1JRLR_eM3YKBOcB3KDYxjFutBl5UO3tUAg.2tx7MSIqaGpwIPrj6gURfd8wPr6ttFZXERWBQij93I0g.PNG/SE-2afd47af-c21f-4fde-8549-af01b0bbd34f.png?type=w3840',
+    defaultUrl: aisoDroneRealPhotoImg,
   },
   service_02: {
     key: 'service_02',
     title: '02. 태양광 패널 클리닝 카탈로그 사진',
     category: '주요 세척 서비스',
     description: '주요 사업 영역 - 02. 태양광 패널 클리닝 대표 카드 이미지',
-    defaultUrl:
-      'https://postfiles.pstatic.net/MjAyNjA3MjRfNDYg/MDAxNzg0ODgwODMzNjcw.8SgKHg0r_6EeccoJwCd76UWD_7y3QBZY1VBrbO1c7sYg.kI_VlsQMPnje5B99yF-hByFdg8omlv0AffnGMhIqrWEg.PNG/SE-480994cf-d9e3-48e6-a8af-e9dfaf4198ae.png?type=w3840',
+    defaultUrl: solarPanelCleaningImg,
   },
   service_03: {
     key: 'service_03',
     title: '03. 유리창 세척 카탈로그 사진',
     category: '주요 세척 서비스',
     description: '주요 사업 영역 - 03. 유리창 세척 대표 카드 이미지',
-    defaultUrl:
-      'https://postfiles.pstatic.net/MjAyNjA3MjRfMTQ5/MDAxNzg0ODc5MjU3OTUw.YjMtkSOl7V3MMLbiV3pU5DZN_J4jW-OjxrPbx1b2aCcg.jltowrm7Mp8B2y7BoGpigdadvAhn34AYEajdzeD10wcg.PNG/3.%EC%9C%A0%EB%A6%AC%EC%B0%BD.png?type=w3840',
+    defaultUrl: purewaterTechWashImg,
   },
   service_04: {
     key: 'service_04',
     title: '04. 재도장 전 고압세척 카탈로그 사진',
     category: '주요 세척 서비스',
     description: '주요 사업 영역 - 04. 재도장 전 고압세척 대표 카드 이미지',
-    defaultUrl:
-      'https://postfiles.pstatic.net/MjAyNjEwMTZfMTQg/MDAxNzkyMTQxNzA5OTgz.W7INkS0WTpEdYOUIwKgBoUDmJb356Wgxh1V4VWIHGhsg.coRn4IvYt1Im7AeVC7zoqgFzshs7pDPjtG2IdN_1Nqgg.JPEG/BLN_MRZ_-_Simone_Hutsch.jpeg?type=w3840',
+    defaultUrl: carWashPressureWaterImg,
   },
   tech_nozzle: {
     key: 'tech_nozzle',
     title: '기술소개 01. 드론 전용 특수 노즐 사진',
     category: '특허 및 기술 소개',
     description: '특허 기술 01 - 드론클린프로 자체개발 드론 전용 특수 노즐 사진',
-    defaultUrl:
-      'https://postfiles.pstatic.net/MjAyNjEwMTZfMTA4/MDAxNzkyMTQxMjk3NTE5.ibkZMJxa5ijWKsD58wsinc0t2y5ewJl80q9WMmQBbp0g.KIMlHtEhBxAdLKlac4AeBaaRa7a-mRfb1wlia3AXT2Eg.GIF/1015_(1)(1)-1(1).gif?type=w3840',
+    defaultUrl: droneHeroCleaningImg,
   },
   tech_tethered: {
     key: 'tech_tethered',
     title: '기술소개 02. 수직하향계류식 드론 구조 사진',
     category: '특허 및 기술 소개',
     description: '특허 기술 02 - 수직하향계류방식 특허 드론 구조 및 현장 사진',
-    defaultUrl:
-      'https://postfiles.pstatic.net/MjAyNjA3MjRfMjA2/MDAxNzg0ODgxNDkxMTgz.y56ZYLUua-Mjt59DGLoUlbPxLnXbWfoTUbyibmx5oDQg.M8opZUXLQ2rBYlrdcT0vf8aIWGg89N4zd51a6hR3020g.PNG/image_(1).png?type=w3840',
+    defaultUrl: tetheredDroneDiagramImg,
   },
   tech_carwash: {
     key: 'tech_carwash',
     title: '기술소개 03. 일반 세차장/고압세척기 비교 사진',
     category: '특허 및 기술 소개',
     description: '특허 기술 03 - 일반 세차장 스펙 비교 카드 사진',
-    defaultUrl:
-      'https://postfiles.pstatic.net/MjAyNjEwMTZfMTc5/MDAxNzkyMTQxODAxOTIz.jXlk_KMm5xAfLFYRzFzQYjUXoMEfkunwLcSP_tfwJZwg.dnGZRuu6kVvvp4oAr2Y-b4-5rwDE4Vvm-Z5575Q-imMg.PNG/053448aa-1a33-4cc6-9d2f-6812eed2433f.png?type=w3840',
+    defaultUrl: carWashPressureWaterImg,
   },
   tech_carwash_sub: {
     key: 'tech_carwash_sub',
     title: '기술소개 03. 드론클린프로 고압세척 현장 사진',
     category: '특허 및 기술 소개',
-    description: '특허 기술 03 - 산업용 드론클린프로 고압세척 현장 카드 사진',
-    defaultUrl:
-      'https://postfiles.pstatic.net/MjAyNjA3MjRfMjg1/MDAxNzg0ODgwODMyMjY2.iwMAp6jq8k1JRLR_eM3YKBOcB3KDYxjFutBl5UO3tUAg.2tx7MSIqaGpwIPrj6gURfd8wPr6ttFZXERWBQij93I0g.PNG/SE-2afd47af-c21f-4fde-8549-af01b0bbd34f.png?type=w3840',
+    description: '특허 기술 03 - 드론클린프로 고압세척 현장 카드 사진',
+    defaultUrl: droneHeroCleaningImg,
   },
   tech_purewater: {
     key: 'tech_purewater',
     title: '기술소개 04. 초순수 퓨어워터 세척 현장 사진',
     category: '특허 및 기술 소개',
     description: '특허 기술 04 - 퓨어워터 정제 세척 현장 사진',
-    defaultUrl:
-      'https://postfiles.pstatic.net/MjAyNjA3MjRfMjc4/MDAxNzg0ODgxMzQ4Mjgw.WFPP0unK5WCGq3qYjQ8lJXFmM22sHfPT4f2WJE_7Gtcg.2JBOTdvtLt9cEUPWQ1rgrW2zXsAHAfcXaf5gR8b7R3Ag.PNG/ChatGPT_Image_2026%EB%85%84_5%EC%9B%94_19%EC%9D%BC_%EC%98%A4%ED%9B%84_05_04_49.png?type=w3840',
+    defaultUrl: purewaterTechWashImg,
   },
   modal_building: {
     key: 'modal_building',
     title: '세척 비교 슬라이더: 건물 외벽 세척 전/후 사진',
     category: '서비스 상세 팝업',
     description: '서비스 소개 팝업 내 건물 외벽 세척 비포/애프터 비교 이미지',
-    defaultUrl:
-      'https://postfiles.pstatic.net/MjAyNjA3MjRfMjc0/MDAxNzg0ODgyNzE5ODUz.dWhOPNzDpoJx5yUyQYLdpi1d340z7FXApC3Ta2fUfksg.fR82Voz5qJc5TSDmsap139GoFFxH99JhHW8v5V9R08Ag.PNG/image.png?type=w3840',
+    defaultUrl: droneHeroCleaningImg,
   },
   modal_solar: {
     key: 'modal_solar',
     title: '세척 비교 슬라이더: 태양광 패널 세척 전/후 사진',
     category: '서비스 상세 팝업',
     description: '서비스 소개 팝업 내 태양광 패널 세척 비포/애프터 비교 이미지',
-    defaultUrl:
-      'https://postfiles.pstatic.net/MjAyNjA3MjRfMTYg/MDAxNzg0ODgyNTc3NTM3.XuxeJ1S7h-TBJRwoT9hDGLWkXv9ptmz42-8gq8Xph5kg.4Uad_x5CHNEaQR3OggOhjke2I07FCcT8yS9t_MgQw5Qg.PNG/image.png?type=w3840',
+    defaultUrl: solarPanelCleaningImg,
   },
 };
 
@@ -1207,6 +1196,7 @@ export default function App() {
   const [quoteActiveTab, setQuoteActiveTab] = useState<'new' | 'my'>('new');
   const [showFormPassword, setShowFormPassword] = useState(false);
   const [showEduConsultModal, setShowEduConsultModal] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Admin Authentication State (Persisted in sessionStorage)
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState<boolean>(() => {
@@ -1293,6 +1283,25 @@ export default function App() {
       isMounted = false;
     };
   }, []);
+
+  // Dynamic Favicon synchronization with current logo photo
+  useEffect(() => {
+    const currentLogo = getImage('logo');
+    if (currentLogo) {
+      let iconLink = document.querySelector("link[rel='icon']") as HTMLLinkElement;
+      if (!iconLink) {
+        iconLink = document.createElement('link');
+        iconLink.rel = 'icon';
+        document.head.appendChild(iconLink);
+      }
+      iconLink.href = currentLogo;
+
+      let appleLink = document.querySelector("link[rel='apple-touch-icon']") as HTMLLinkElement;
+      if (appleLink) {
+        appleLink.href = currentLogo;
+      }
+    }
+  }, [siteImages]);
 
   const [showImageManagerModal, setShowImageManagerModal] = useState(false);
   const [focusedImageSlotKey, setFocusedImageSlotKey] = useState<string | null>(null);
@@ -1997,12 +2006,12 @@ export default function App() {
       <header className="sticky top-0 z-40 bg-white border-b border-slate-200 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           
-          {/* Logo */}
+          {/* Logo (검정 테두리 완전히 삭제된 클린 로고 마크) */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="flex items-center gap-3.5 group text-left cursor-pointer"
+            className="flex items-center gap-2.5 sm:gap-3.5 group text-left cursor-pointer"
           >
-            <div className="w-11 h-11 rounded-xl bg-transparent flex items-center justify-center shrink-0 overflow-hidden shadow-xs aspect-square">
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center shrink-0 overflow-hidden shadow-xs aspect-square border-0">
               <img
                 src={getImage('logo')}
                 alt="드론클린프로 로고"
@@ -2010,13 +2019,16 @@ export default function App() {
                 width={1080}
                 height={1080}
                 referrerPolicy="no-referrer"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = logoIconImg;
+                }}
               />
             </div>
             <div>
-              <div className="font-black text-xl tracking-tight text-slate-900">
+              <div className="font-black text-lg sm:text-xl tracking-tight text-slate-900">
                 드론클린프로
               </div>
-              <p className="text-[11px] text-slate-500 font-medium tracking-wide leading-tight">
+              <p className="hidden sm:block text-[11px] text-slate-500 font-medium tracking-wide leading-tight">
                 B2B 스마트 외벽
                 <br />
                 ㆍ태양광ㆍ유리창 세척
@@ -2075,24 +2087,25 @@ export default function App() {
             </button>
           </nav>
 
-          {/* Actions: 관리자로그인(네모박스 형태)과 문의하기 */}
-          <div className="flex items-center gap-3">
-            {/* 관리자 로그인 버튼 (네모박스 형태) */}
+          {/* Actions: 관리자 로그인, 문의하기, 모바일 햄버거 메뉴 토글 */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* 관리자 로그인 버튼 */}
             {isAdminAuthenticated ? (
               <div className="flex items-center gap-1.5">
                 <button
                   type="button"
                   onClick={() => handleOpenImageManager()}
-                  className="px-3 py-2 rounded border border-slate-300 hover:border-slate-800 bg-white hover:bg-slate-50 text-slate-800 text-xs sm:text-sm font-semibold flex items-center gap-1.5 transition-colors shadow-xs cursor-pointer"
+                  className="px-2.5 sm:px-3 py-1.5 sm:py-2 rounded border border-slate-300 hover:border-slate-800 bg-white hover:bg-slate-50 text-slate-800 text-xs sm:text-sm font-semibold flex items-center gap-1.5 transition-colors shadow-xs cursor-pointer"
                   title="게시 사진/동영상 관리자"
                 >
                   <Camera className="w-3.5 h-3.5 text-[#1d61e8]" />
-                  <span>사진 관리</span>
+                  <span className="hidden sm:inline">사진 관리</span>
+                  <span className="sm:hidden">사진</span>
                 </button>
                 <button
                   type="button"
                   onClick={handleAdminLogout}
-                  className="px-2.5 py-2 rounded border border-slate-300 hover:border-slate-800 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs sm:text-sm font-medium transition-colors shadow-xs cursor-pointer"
+                  className="px-2 sm:px-2.5 py-1.5 sm:py-2 rounded border border-slate-300 hover:border-slate-800 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs sm:text-sm font-medium transition-colors shadow-xs cursor-pointer"
                   title="관리자 로그아웃"
                 >
                   로그아웃
@@ -2105,7 +2118,7 @@ export default function App() {
                   setShowAdminLoginModal(true);
                   setAdminAuthError(null);
                 }}
-                className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded border border-slate-300 hover:border-slate-900 bg-white hover:bg-slate-50 text-slate-700 hover:text-slate-900 text-[11px] sm:text-xs font-medium flex items-center gap-1.5 transition-colors shadow-xs cursor-pointer text-left leading-tight"
+                className="hidden sm:flex px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded border border-slate-300 hover:border-slate-900 bg-white hover:bg-slate-50 text-slate-700 hover:text-slate-900 text-[11px] sm:text-xs font-medium items-center gap-1.5 transition-colors shadow-xs cursor-pointer text-left leading-tight"
                 title="관리자 로그인"
               >
                 <Lock className="w-3.5 h-3.5 text-slate-500 shrink-0" />
@@ -2121,22 +2134,142 @@ export default function App() {
             <button
               type="button"
               onClick={() => handleQuoteNavClick('new')}
-              className="hidden sm:inline-flex items-center gap-2 bg-[#1d61e8] hover:bg-[#1550c6] text-white font-bold px-4 py-2 rounded shadow-xs hover:shadow transition-all text-xs sm:text-sm cursor-pointer"
+              className="inline-flex items-center gap-1.5 sm:gap-2 bg-[#1d61e8] hover:bg-[#1550c6] text-white font-bold px-3 sm:px-4 py-2 rounded shadow-xs hover:shadow transition-all text-xs sm:text-sm cursor-pointer"
             >
               <MessageSquare className="w-4 h-4 text-white" />
               <span>문의하기</span>
             </button>
+
+            {/* 모바일 햄버거 메뉴 토글 버튼 */}
             <button
               type="button"
-              onClick={() => handleQuoteNavClick('new')}
-              className="inline-flex sm:hidden items-center justify-center px-3 py-2 rounded bg-[#1d61e8] text-white text-xs font-bold gap-1.5 cursor-pointer"
-              title="견적문의"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden p-2 rounded-lg text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer"
+              aria-label={mobileMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
             >
-              <MessageSquare className="w-4 h-4 text-white" />
-              <span>문의</span>
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
+
+        {/* 모바일 내비게이션 드로어 (화면 크기에 맞춘 모바일 전용 메뉴) */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden bg-white border-t border-slate-200 px-4 pt-3 pb-5 space-y-3 shadow-xl animate-fadeIn">
+            <nav className="flex flex-col gap-1 text-sm font-semibold text-slate-700">
+              <button
+                onClick={() => {
+                  document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full text-left py-2.5 px-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer flex items-center justify-between"
+              >
+                <span>사업 영역 (외벽ㆍ태양광ㆍ유리창)</span>
+                <ChevronRight className="w-4 h-4 text-slate-400" />
+              </button>
+              <button
+                onClick={() => {
+                  document.getElementById('technology')?.scrollIntoView({ behavior: 'smooth' });
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full text-left py-2.5 px-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer flex items-center justify-between"
+              >
+                <span>기술 소개 (특허 전용노즐)</span>
+                <ChevronRight className="w-4 h-4 text-slate-400" />
+              </button>
+              <button
+                onClick={() => {
+                  document.getElementById('eco-safety')?.scrollIntoView({ behavior: 'smooth' });
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full text-left py-2.5 px-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer flex items-center justify-between"
+              >
+                <span>세척 방식 (순수정제수 & 친환경)</span>
+                <ChevronRight className="w-4 h-4 text-slate-400" />
+              </button>
+              <button
+                onClick={() => {
+                  document.getElementById('comparison')?.scrollIntoView({ behavior: 'smooth' });
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full text-left py-2.5 px-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer flex items-center justify-between"
+              >
+                <span>서비스 비교 (기존 방식 vs 드론클린프로)</span>
+                <ChevronRight className="w-4 h-4 text-slate-400" />
+              </button>
+              <button
+                onClick={() => {
+                  document.getElementById('process')?.scrollIntoView({ behavior: 'smooth' });
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full text-left py-2.5 px-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer flex items-center justify-between"
+              >
+                <span>진행안내</span>
+                <ChevronRight className="w-4 h-4 text-slate-400" />
+              </button>
+              <button
+                onClick={() => {
+                  handleQuoteNavClick();
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full text-left py-2.5 px-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer flex items-center justify-between text-[#1d61e8] font-bold"
+              >
+                <span>견적문의 / 조회</span>
+                <ChevronRight className="w-4 h-4 text-[#1d61e8]" />
+              </button>
+              
+              {/* 드론 세척 교육사업 링크 (모바일 강조) */}
+              <button
+                onClick={() => {
+                  navigateToEducation();
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full text-left py-3 px-3.5 rounded-xl bg-blue-50 text-[#1d61e8] border border-blue-200 font-black transition-all cursor-pointer flex items-center justify-between shadow-xs mt-1"
+              >
+                <span className="flex items-center gap-2">
+                  <GraduationCap className="w-4 h-4 text-[#1d61e8]" />
+                  <span>드론 세척 전문 교육사업</span>
+                </span>
+                <span className="text-[10px] bg-[#1d61e8] text-white px-2 py-0.5 rounded-full font-bold">신규</span>
+              </button>
+            </nav>
+
+            {/* 모바일 하단 빠른 액션 바 */}
+            <div className="pt-3 border-t border-slate-100 flex items-center gap-2">
+              <a
+                href="tel:01085642682"
+                className="flex-1 py-2.5 px-3 rounded-lg bg-slate-900 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-xs"
+              >
+                <Phone className="w-3.5 h-3.5 text-emerald-400" />
+                <span>010-8564-2682</span>
+              </a>
+              {isAdminAuthenticated ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    handleOpenImageManager();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="py-2.5 px-3 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold border border-slate-200 flex items-center gap-1"
+                >
+                  <Camera className="w-3.5 h-3.5 text-[#1d61e8]" />
+                  <span>사진관리</span>
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowAdminLoginModal(true);
+                    setMobileMenuOpen(false);
+                  }}
+                  className="py-2.5 px-3 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold border border-slate-200 flex items-center gap-1"
+                >
+                  <Lock className="w-3.5 h-3.5 text-slate-500" />
+                  <span>관리자</span>
+                </button>
+              )}
+            </div>
+          </div>
+        )}
       </header>
 
       {/* MAIN CONTENT */}
@@ -2152,19 +2285,19 @@ export default function App() {
               <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
                 
                 {/* Eyebrow Badges */}
-                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 sm:gap-2.5">
-                  <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-slate-100 border border-slate-200 text-slate-900 text-xs sm:text-sm font-bold shadow-xs">
-                    <Award className="w-4 h-4 text-[#1d61e8]" />
+                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-1.5 sm:gap-2.5">
+                  <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-md bg-slate-100 border border-slate-200 text-slate-900 text-[11px] sm:text-xs md:text-sm font-bold shadow-xs">
+                    <Award className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#1d61e8]" />
                     <span>건물위생관리업 정식 인허가 업체</span>
                   </div>
-                  <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-slate-100 border border-slate-200 text-slate-900 text-xs sm:text-sm font-bold shadow-xs">
-                    <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                  <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-md bg-slate-100 border border-slate-200 text-slate-900 text-[11px] sm:text-xs md:text-sm font-bold shadow-xs">
+                    <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600" />
                     <span>드론배상책임보험 가입 업체</span>
                   </div>
                 </div>
 
                 {/* Main Headline */}
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.18] tracking-tight">
+                <h1 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.2] tracking-tight break-keep">
                   사람 대신 기술로,
                   <br />
                   <span className="text-[#1d61e8]">
@@ -2177,30 +2310,26 @@ export default function App() {
                 </h1>
 
                 {/* Sub Headline */}
-                <p className="text-base sm:text-lg text-slate-600 font-normal max-w-2xl mx-auto lg:mx-0 leading-relaxed whitespace-pre-line">
-{`건물외벽, 태양광 발전 패널, 유리창까지
-산업용 드론과 전문 세척 기술을 활용해
-안전하고 체계적으로 세척합니다.
-현장 특성에 맞는 작업 방식으로 
-효율적인 청소 서비스를 제공합니다.`}
+                <p className="text-sm sm:text-base lg:text-lg text-slate-600 font-normal max-w-2xl mx-auto lg:mx-0 leading-relaxed break-keep">
+                  건물외벽, 태양광 발전 패널, 유리창까지 산업용 드론과 전문 세척 기술을 활용해 안전하고 체계적으로 세척합니다. 현장 특성에 맞는 작업 방식으로 효율적인 청소 서비스를 제공합니다.
                 </p>
 
                 {/* Action Buttons (Solid Dark CTA + Royal Blue CTA) */}
-                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-2">
+                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-2">
                   <button
                     onClick={() => openTestModal('문의하기')}
-                    className="w-full sm:w-auto px-8 py-4 rounded bg-slate-900 hover:bg-black text-white font-extrabold text-base shadow-sm transition-all flex items-center justify-center gap-2 group cursor-pointer"
+                    className="w-full sm:w-auto px-5 sm:px-8 py-3.5 sm:py-4 rounded bg-slate-900 hover:bg-black text-white font-extrabold text-sm sm:text-base shadow-sm transition-all flex items-center justify-center gap-2 group cursor-pointer"
                   >
-                    <MessageSquare className="w-5 h-5 text-white" />
+                    <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                     <span>견적 및 현장 상담 문의</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-white" />
                   </button>
 
                   <a
                     href="tel:01085642682"
-                    className="w-full sm:w-auto px-8 py-4 rounded bg-[#1d61e8] hover:bg-[#1550c6] text-white font-black text-base shadow-sm transition-all flex items-center justify-center gap-2.5 cursor-pointer"
+                    className="w-full sm:w-auto px-5 sm:px-8 py-3.5 sm:py-4 rounded bg-[#1d61e8] hover:bg-[#1550c6] text-white font-black text-sm sm:text-base shadow-sm transition-all flex items-center justify-center gap-2.5 cursor-pointer"
                   >
-                    <Phone className="w-5 h-5 text-white fill-white" />
+                    <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-white fill-white" />
                     <span>010-8564-2682</span>
                   </a>
                 </div>
@@ -2209,7 +2338,7 @@ export default function App() {
 
               {/* Right Visual Image Card (Photo-Centric Display) */}
               <div className="lg:col-span-5 relative">
-                <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-md bg-white p-2 h-[380px] lg:h-[440px] group">
+                <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-md bg-white p-2 h-[280px] xs:h-[320px] sm:h-[380px] lg:h-[440px] group">
                   {/* Image 1 */}
                   <div className={`absolute inset-2 transition-opacity duration-700 ease-in-out ${currentHeroIndex === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'}`}>
                     <EditableSiteImage
@@ -2269,9 +2398,8 @@ export default function App() {
                       경제성
                     </h3>
                   </div>
-                  <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed font-normal whitespace-pre-line">
-{`인력 중심 작업 대비 효율적인 비용 구조
-현장 조건에 맞춘 작업으로 불필요한 비용을 줄입니다.`}
+                  <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed font-normal break-keep">
+                    인력 중심 작업 대비 효율적인 비용 구조를 제공하며, 현장 조건에 맞춘 작업으로 불필요한 비용을 줄입니다.
                   </p>
                 </div>
 
@@ -2285,9 +2413,8 @@ export default function App() {
                       효율성
                     </h3>
                   </div>
-                  <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed font-normal whitespace-pre-line">
-{`대규모 시설도 체계적으로 신속하게
-드론과 전문 세척 장비로 작업 효율을 높입니다.`}
+                  <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed font-normal break-keep">
+                    대규모 시설도 체계적이고 신속하게 드론과 전문 세척 장비로 작업 효율을 높입니다.
                   </p>
                 </div>
 
@@ -2301,9 +2428,8 @@ export default function App() {
                       안전성
                     </h3>
                   </div>
-                  <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed font-normal whitespace-pre-line">
-{`고소작업에 따른 추락 위험을 최소화
-지상에서 작업을 관리해 안전한 환경을 구축합니다.`}
+                  <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed font-normal break-keep">
+                    고소작업에 따른 추락 위험을 최소화하며, 지상에서 안전하게 작업을 운용 및 통제합니다.
                   </p>
                 </div>
               </div>
@@ -2814,7 +2940,7 @@ export default function App() {
                       <Zap className="w-4 h-4 text-[#1d61e8]" />
                       고압세척기 스펙 비교
                     </span>
-                    <span className="text-[11px] text-slate-500 font-medium">일반 장비 vs 산업용 드론클린프로</span>
+                    <span className="text-[11px] text-slate-500 font-medium">일반 장비 vs 드론클린프로</span>
                   </div>
 
                   <div className="grid grid-cols-2 gap-4 text-xs">
@@ -2854,7 +2980,7 @@ export default function App() {
                           containerClassName="relative h-28 w-full rounded overflow-hidden border border-blue-300"
                         />
                         <div className="text-xs font-bold text-[#1d61e8] border-b border-blue-200 pb-1">
-                          산업용 드론클린프로
+                          드론클린프로
                         </div>
                       </div>
 
@@ -3114,8 +3240,15 @@ export default function App() {
 
           {/* Comparison Table */}
           <div className="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
+            <div className="sm:hidden flex items-center justify-between bg-blue-50/80 border-b border-blue-100 px-3.5 py-2 text-[11px] text-blue-900 font-bold">
+              <span className="flex items-center gap-1.5">
+                <ArrowRightLeft className="w-3.5 h-3.5 text-[#1d61e8]" />
+                표를 좌우로 스크롤하여 비교 항목을 확인하세요
+              </span>
+              <span className="text-[10px] text-blue-700 bg-white px-2 py-0.5 rounded border border-blue-200">← 슬라이드 →</span>
+            </div>
             <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse min-w-[700px]">
+              <table className="w-full text-left border-collapse min-w-[640px] sm:min-w-[700px]">
                 <thead>
                   <tr className="bg-slate-900 text-white text-xs sm:text-sm">
                     <th className="py-4 px-4 font-bold w-[14%] text-center border-r border-slate-800">구분</th>
@@ -3401,22 +3534,22 @@ export default function App() {
             <button
               type="button"
               onClick={() => setQuoteActiveTab('new')}
-              className={`p-6 sm:p-7 rounded-xl border text-left transition-all cursor-pointer flex items-start gap-4 sm:gap-5 ${
+              className={`p-4 sm:p-7 rounded-xl border text-left transition-all cursor-pointer flex items-start gap-3 sm:gap-5 ${
                 quoteActiveTab === 'new'
                   ? 'bg-slate-900 text-white border-slate-900 shadow-md ring-2 ring-[#1d61e8]'
                   : 'bg-white text-slate-800 border-slate-300 hover:border-slate-500 hover:bg-slate-50 shadow-xs'
               }`}
             >
-              <div className={`w-12 h-12 rounded-lg flex items-center justify-center shrink-0 ${
+              <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center shrink-0 ${
                 quoteActiveTab === 'new' ? 'bg-[#1d61e8] text-white' : 'bg-slate-100 text-slate-700'
               }`}>
-                <FileEdit className="w-6 h-6" />
+                <FileEdit className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
               <div className="space-y-1.5 flex-1">
                 <div className="flex items-center justify-between">
-                  <span className="text-lg sm:text-xl font-black tracking-tight">신규 견적문의</span>
+                  <span className="text-base sm:text-xl font-black tracking-tight">신규 견적문의</span>
                   {quoteActiveTab === 'new' && (
-                    <span className="px-2.5 py-0.5 rounded text-[11px] font-bold bg-[#1d61e8] text-white">선택됨</span>
+                    <span className="px-2 sm:px-2.5 py-0.5 rounded text-[10px] sm:text-[11px] font-bold bg-[#1d61e8] text-white">선택됨</span>
                   )}
                 </div>
                 <p className={`text-xs sm:text-sm leading-relaxed ${quoteActiveTab === 'new' ? 'text-slate-300' : 'text-slate-500'}`}>
@@ -3429,25 +3562,25 @@ export default function App() {
             <button
               type="button"
               onClick={() => setQuoteActiveTab('my')}
-              className={`p-6 sm:p-7 rounded-xl border text-left transition-all cursor-pointer flex items-start gap-4 sm:gap-5 ${
+              className={`p-4 sm:p-7 rounded-xl border text-left transition-all cursor-pointer flex items-start gap-3 sm:gap-5 ${
                 quoteActiveTab === 'my'
                   ? 'bg-slate-900 text-white border-slate-900 shadow-md ring-2 ring-[#1d61e8]'
                   : 'bg-white text-slate-800 border-slate-300 hover:border-slate-500 hover:bg-slate-50 shadow-xs'
               }`}
             >
-              <div className={`w-12 h-12 rounded-lg flex items-center justify-center shrink-0 ${
+              <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center shrink-0 ${
                 quoteActiveTab === 'my' ? 'bg-[#1d61e8] text-white' : 'bg-slate-100 text-slate-700'
               }`}>
-                <ClipboardList className="w-6 h-6" />
+                <ClipboardList className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
               <div className="space-y-1.5 flex-1">
                 <div className="flex items-start justify-between gap-2">
-                  <span className="text-lg sm:text-xl font-black tracking-tight leading-tight">
+                  <span className="text-base sm:text-xl font-black tracking-tight leading-tight">
                     나의 견적문의 <br />
                     조회/관리
                   </span>
                   {quoteActiveTab === 'my' && (
-                    <span className="px-2.5 py-0.5 rounded text-[11px] font-bold bg-[#1d61e8] text-white shrink-0 mt-0.5">선택됨</span>
+                    <span className="px-2 sm:px-2.5 py-0.5 rounded text-[10px] sm:text-[11px] font-bold bg-[#1d61e8] text-white shrink-0 mt-0.5">선택됨</span>
                   )}
                 </div>
                 <p className={`text-xs sm:text-sm leading-relaxed ${quoteActiveTab === 'my' ? 'text-slate-300' : 'text-slate-500'}`}>
@@ -3459,7 +3592,7 @@ export default function App() {
 
           {/* TAB 1: 신규 견적문의 화면 */}
           {quoteActiveTab === 'new' ? (
-            <div className="max-w-4xl mx-auto bg-white p-8 sm:p-12 rounded-xl border border-slate-200 shadow-sm space-y-8">
+            <div className="max-w-4xl mx-auto bg-white p-4 sm:p-8 md:p-12 rounded-xl border border-slate-200 shadow-sm space-y-6 sm:space-y-8">
               
               {/* 보안 및 비공개 안내 배너 */}
               <div className="p-4 sm:p-5 rounded-lg bg-slate-900 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -3988,7 +4121,17 @@ export default function App() {
             <div className="lg:col-span-5 space-y-4">
               <div className="space-y-2">
                 <div className="font-black text-xl text-white flex items-start gap-2.5">
-                  <img src={getImage('logo')} alt="드론클린프로 로고" className="w-6 h-6 object-contain mt-0.5" referrerPolicy="no-referrer" />
+                  <div className="w-7 h-7 rounded-lg flex items-center justify-center overflow-hidden shrink-0 mt-0.5 border-0">
+                    <img
+                      src={getImage('logo')}
+                      alt="드론클린프로 로고"
+                      className="w-full h-full object-cover"
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = logoIconImg;
+                      }}
+                    />
+                  </div>
                   <span className="leading-tight">
                     드론클린프로
                     <br />
@@ -4754,12 +4897,12 @@ export default function App() {
       )}
 
       {/* 12. FLOATING ACTION BUTTONS (BOTTOM-RIGHT) */}
-      <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-2 pointer-events-auto">
+      <div className="fixed bottom-3.5 right-3.5 sm:bottom-6 sm:right-6 z-40 flex flex-col items-end gap-2 pointer-events-auto">
         {/* 맨 위로 이동 (↑) 버튼 */}
         <button
           type="button"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="w-10 h-10 rounded-full bg-slate-900/95 hover:bg-slate-800 text-white shadow-xl border border-slate-700 flex items-center justify-center transition-all hover:scale-105 active:scale-95 cursor-pointer backdrop-blur-sm group"
+          className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-900/95 hover:bg-slate-800 text-white shadow-xl border border-slate-700 flex items-center justify-center transition-all hover:scale-105 active:scale-95 cursor-pointer backdrop-blur-sm group"
           title="맨 위로 이동"
           aria-label="맨 위로 이동"
         >
@@ -4771,7 +4914,7 @@ export default function App() {
           <button
             type="button"
             onClick={() => setShowEduConsultModal(true)}
-            className="px-4 py-2.5 rounded-full bg-[#1d61e8] hover:bg-[#1550c6] text-white font-black text-xs shadow-xl flex items-center justify-center transition-all hover:scale-105 active:scale-95 cursor-pointer border border-blue-400/40"
+            className="px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full bg-[#1d61e8] hover:bg-[#1550c6] text-white font-black text-xs shadow-xl flex items-center justify-center transition-all hover:scale-105 active:scale-95 cursor-pointer border border-blue-400/40"
           >
             <span>교육 상담 문의</span>
           </button>
@@ -4779,7 +4922,7 @@ export default function App() {
           <button
             type="button"
             onClick={() => handleQuoteNavClick('new')}
-            className="px-4 py-2.5 rounded-full bg-[#1d61e8] hover:bg-[#1550c6] text-white font-black text-xs shadow-xl flex items-center gap-2 transition-all hover:scale-105 active:scale-95 cursor-pointer border border-blue-400/40"
+            className="px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full bg-[#1d61e8] hover:bg-[#1550c6] text-white font-black text-xs shadow-xl flex items-center gap-1.5 sm:gap-2 transition-all hover:scale-105 active:scale-95 cursor-pointer border border-blue-400/40"
           >
             <FileText className="w-3.5 h-3.5" />
             <span>실시간 견적문의</span>
@@ -4789,10 +4932,11 @@ export default function App() {
         {/* 전화 상담 버튼 */}
         <a
           href="tel:01085642682"
-          className="px-4 py-2.5 rounded-full bg-slate-900/95 hover:bg-slate-800 text-white font-black text-xs shadow-xl flex items-center gap-2 transition-all hover:scale-105 active:scale-95 border border-slate-700 backdrop-blur-sm"
+          className="px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full bg-slate-900/95 hover:bg-slate-800 text-white font-black text-xs shadow-xl flex items-center gap-1.5 sm:gap-2 transition-all hover:scale-105 active:scale-95 border border-slate-700 backdrop-blur-sm"
         >
           <Phone className="w-3.5 h-3.5 text-emerald-400" />
-          <span>전화 상담 010-8564-2682</span>
+          <span className="hidden sm:inline">전화 상담 010-8564-2682</span>
+          <span className="sm:hidden">전화상담</span>
         </a>
       </div>
 

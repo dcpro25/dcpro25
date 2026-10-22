@@ -23,7 +23,9 @@ import {
   AlertCircle,
   HelpCircle,
   Lock,
-  Camera
+  Camera,
+  Menu,
+  Phone
 } from 'lucide-react';
 
 interface EducationPageProps {
@@ -52,6 +54,7 @@ export default function EducationPage({
   // Modal states
   const [showCurriculumModal, setShowCurriculumModal] = useState(false);
   const [localShowConsultModal, setLocalShowConsultModal] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isConsultModalOpen = showConsultModalProp !== undefined ? showConsultModalProp : localShowConsultModal;
   const setConsultModalOpen = setShowConsultModalProp || setLocalShowConsultModal;
   const [consultSubmitted, setConsultSubmitted] = useState(false);
@@ -143,13 +146,13 @@ export default function EducationPage({
       {/* 2. HEADER */}
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
-          {/* Logo with Back/Home indicator */}
+          {/* Logo with Back/Home indicator (검정 테두리 완전히 삭제된 클린 로고 마크) */}
           <button
             onClick={onNavigateHome}
-            className="flex items-center gap-3 group text-left cursor-pointer"
+            className="flex items-center gap-2.5 sm:gap-3 group text-left cursor-pointer"
             title="홈페이지 메인으로 이동"
           >
-            <div className="w-11 h-11 rounded-xl bg-transparent flex items-center justify-center shrink-0 overflow-hidden shadow-xs aspect-square">
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center shrink-0 overflow-hidden shadow-xs aspect-square border-0">
               <img
                 src={getImage('logo')}
                 alt="드론클린프로 로고"
@@ -157,13 +160,16 @@ export default function EducationPage({
                 width={1080}
                 height={1080}
                 referrerPolicy="no-referrer"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = '/logo.png';
+                }}
               />
             </div>
             <div>
-              <div className="font-black text-xl tracking-tight text-slate-900 flex items-center gap-1.5">
+              <div className="font-black text-base sm:text-xl tracking-tight text-slate-900 flex items-center gap-1.5 whitespace-nowrap">
                 <span>드론클린프로</span>
               </div>
-              <p className="text-[11px] text-slate-500 font-medium tracking-wide">
+              <p className="hidden sm:block text-[11px] text-slate-500 font-medium tracking-wide">
                 드론 세척 전문교육
               </p>
             </div>
@@ -181,31 +187,31 @@ export default function EducationPage({
               onClick={() => document.getElementById('edu-why')?.scrollIntoView({ behavior: 'smooth' })}
               className="hover:text-[#1d61e8] transition-colors py-1 cursor-pointer"
             >
-              교육소개
+              교육 소개
             </button>
             <button
               onClick={() => document.getElementById('edu-curriculum')?.scrollIntoView({ behavior: 'smooth' })}
               className="hover:text-[#1d61e8] transition-colors py-1 cursor-pointer"
             >
-              교육과정
+              교육 과정
             </button>
             <button
               onClick={() => document.getElementById('edu-process')?.scrollIntoView({ behavior: 'smooth' })}
               className="hover:text-[#1d61e8] transition-colors py-1 cursor-pointer"
             >
-              교육진행
+              진행 절차
             </button>
             <button
               onClick={() => document.getElementById('edu-support')?.scrollIntoView({ behavior: 'smooth' })}
               className="hover:text-[#1d61e8] transition-colors py-1 cursor-pointer"
             >
-              사후지원
+              사후 지원
             </button>
             <button
               onClick={() => document.getElementById('edu-target')?.scrollIntoView({ behavior: 'smooth' })}
               className="hover:text-[#1d61e8] transition-colors py-1 cursor-pointer"
             >
-              교육대상
+              교육 대상
             </button>
             <button
               onClick={() => {
@@ -219,7 +225,7 @@ export default function EducationPage({
           </nav>
 
           {/* Action CTAs */}
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2 sm:gap-2.5">
             {isAdminAuthenticated ? (
               <div className="flex items-center gap-1.5">
                 <button
@@ -228,7 +234,7 @@ export default function EducationPage({
                   className="px-2.5 py-1.5 rounded border border-slate-300 hover:border-slate-800 bg-white text-slate-800 text-xs font-semibold flex items-center gap-1 transition-colors cursor-pointer"
                 >
                   <Camera className="w-3.5 h-3.5 text-[#1d61e8]" />
-                  <span>사진관리</span>
+                  <span className="hidden sm:inline">사진관리</span>
                 </button>
                 <button
                   type="button"
@@ -243,13 +249,111 @@ export default function EducationPage({
             <button
               type="button"
               onClick={() => setConsultModalOpen(true)}
-              className="inline-flex items-center gap-2 bg-[#1d61e8] hover:bg-[#1550c6] text-white font-bold px-4 py-2 sm:py-2.5 rounded shadow-xs hover:shadow transition-all text-xs sm:text-sm cursor-pointer"
+              className="inline-flex items-center gap-1.5 sm:gap-2 bg-[#1d61e8] hover:bg-[#1550c6] text-white font-bold px-2.5 sm:px-4 py-2 sm:py-2.5 rounded shadow-xs hover:shadow transition-all text-xs sm:text-sm cursor-pointer whitespace-nowrap shrink-0"
             >
-              <PhoneCall className="w-4 h-4 text-white" />
+              <PhoneCall className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
               <span>교육 상담 신청</span>
+            </button>
+
+            {/* 모바일 햄버거 메뉴 토글 버튼 */}
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden p-2 rounded-lg text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer"
+              aria-label={mobileMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
+
+        {/* 모바일 내비게이션 드로어 */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden bg-white border-t border-slate-200 px-4 pt-3 pb-5 space-y-3 shadow-xl animate-fadeIn">
+            <nav className="flex flex-col gap-1 text-sm font-semibold text-slate-700">
+              <button
+                onClick={() => {
+                  onNavigateHome();
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full text-left py-2.5 px-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer flex items-center justify-between text-[#1d61e8] font-bold"
+              >
+                <span>← 홈(세척서비스) 메인으로</span>
+                <ChevronRight className="w-4 h-4 text-[#1d61e8]" />
+              </button>
+              <button
+                onClick={() => {
+                  document.getElementById('edu-why')?.scrollIntoView({ behavior: 'smooth' });
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full text-left py-2.5 px-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer flex items-center justify-between"
+              >
+                <span>교육 소개</span>
+                <ChevronRight className="w-4 h-4 text-slate-400" />
+              </button>
+              <button
+                onClick={() => {
+                  document.getElementById('edu-curriculum')?.scrollIntoView({ behavior: 'smooth' });
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full text-left py-2.5 px-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer flex items-center justify-between"
+              >
+                <span>교육 과정</span>
+                <ChevronRight className="w-4 h-4 text-slate-400" />
+              </button>
+              <button
+                onClick={() => {
+                  document.getElementById('edu-process')?.scrollIntoView({ behavior: 'smooth' });
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full text-left py-2.5 px-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer flex items-center justify-between"
+              >
+                <span>진행 절차</span>
+                <ChevronRight className="w-4 h-4 text-slate-400" />
+              </button>
+              <button
+                onClick={() => {
+                  document.getElementById('edu-support')?.scrollIntoView({ behavior: 'smooth' });
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full text-left py-2.5 px-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer flex items-center justify-between"
+              >
+                <span>사후 지원</span>
+                <ChevronRight className="w-4 h-4 text-slate-400" />
+              </button>
+              <button
+                onClick={() => {
+                  document.getElementById('edu-target')?.scrollIntoView({ behavior: 'smooth' });
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full text-left py-2.5 px-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer flex items-center justify-between"
+              >
+                <span>교육 대상</span>
+                <ChevronRight className="w-4 h-4 text-slate-400" />
+              </button>
+            </nav>
+
+            <div className="pt-3 border-t border-slate-100 flex items-center gap-2">
+              <a
+                href="tel:01085642682"
+                className="flex-1 py-2.5 px-3 rounded-lg bg-slate-900 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-xs"
+              >
+                <Phone className="w-3.5 h-3.5 text-emerald-400" />
+                <span>교육문의 010-8564-2682</span>
+              </a>
+              <button
+                type="button"
+                onClick={() => {
+                  setConsultModalOpen(true);
+                  setMobileMenuOpen(false);
+                }}
+                className="py-2.5 px-4 rounded-lg bg-[#1d61e8] text-white text-xs font-bold shadow-xs"
+              >
+                상담신청
+              </button>
+            </div>
+          </div>
+        )}
       </header>
 
       {/* MAIN CONTENT */}
@@ -275,18 +379,16 @@ export default function EducationPage({
                   </div>
                 </div>
 
-                {/* Main Title - exactly 3 lines with grouped words */}
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.25] tracking-tight">
-                  드론 세척,<br />
-                  <span className="inline-block whitespace-nowrap">장비부터 현장·견적까지</span><br />
-                  <span className="text-[#1d61e8] inline-block whitespace-nowrap">직접 배워보세요.</span>
+                {/* Main Title */}
+                <h1 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.3] tracking-tight break-keep">
+                  드론세척, 장비부터<br />
+                  현장ㆍ견적까지<br />
+                  <span className="text-[#1d61e8]">직접 배워보세요.</span>
                 </h1>
 
                 {/* Sub Description */}
-                <p className="text-base sm:text-lg text-slate-600 font-normal max-w-2xl mx-auto lg:mx-0 leading-relaxed whitespace-pre-line">
-{`실제 드론 세척 현장에서 사용하는 장비와 작업방식을 바탕으로
-장비 세팅부터 세척기술, 현장실습, 견적 및 고객 대응까지
-현장에서 바로 활용할 수 있는 내용을 중심으로 교육합니다.`}
+                <p className="text-sm sm:text-base lg:text-lg text-slate-600 font-normal max-w-2xl mx-auto lg:mx-0 leading-relaxed break-keep">
+                  실제 드론 세척 현장에서 사용하는 장비와 작업방식을 바탕으로 장비 세팅부터 세척기술, 현장실습, 견적 및 고객 대응까지 현장에서 바로 활용할 수 있는 실무 중심 교육을 제공합니다.
                 </p>
 
                 {/* Action Buttons */}
@@ -295,7 +397,7 @@ export default function EducationPage({
                     <button
                       type="button"
                       onClick={() => document.getElementById('edu-curriculum')?.scrollIntoView({ behavior: 'smooth' })}
-                      className="w-full sm:w-auto px-6 py-2.5 min-h-[52px] rounded bg-slate-900 hover:bg-black text-white text-sm sm:text-base font-bold transition-all shadow-sm flex items-center justify-center gap-2 cursor-pointer"
+                      className="w-full sm:w-auto px-6 py-2.5 min-h-[50px] sm:min-h-[52px] rounded bg-slate-900 hover:bg-black text-white text-sm sm:text-base font-bold transition-all shadow-sm flex items-center justify-center gap-2 cursor-pointer"
                     >
                       <span>교육과정 확인하기</span>
                       <ChevronRight className="w-4 h-4 text-slate-400" />
@@ -303,7 +405,7 @@ export default function EducationPage({
 
                     <a
                       href="tel:01085642682"
-                      className="w-full sm:w-auto px-6 py-2.5 min-h-[52px] rounded bg-[#1d61e8] hover:bg-[#1550c6] text-white font-bold transition-all shadow-sm flex items-center justify-center gap-2.5 cursor-pointer"
+                      className="w-full sm:w-auto px-6 py-2.5 min-h-[50px] sm:min-h-[52px] rounded bg-[#1d61e8] hover:bg-[#1550c6] text-white font-bold transition-all shadow-sm flex items-center justify-center gap-2.5 cursor-pointer"
                     >
                       <PhoneCall className="w-4 h-4 text-white shrink-0" />
                       <div className="flex flex-col items-start text-left">
@@ -317,7 +419,7 @@ export default function EducationPage({
                 </div>
 
                 {/* Bottom Core Points */}
-                <div className="pt-4 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs sm:text-sm font-semibold text-slate-700">
+                <div className="pt-4 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5 text-xs sm:text-sm font-semibold text-slate-700">
                   <span className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-[#1d61e8] shrink-0" />
                     <span>실제 세척 현장 경험 기반 교육</span>
@@ -339,7 +441,7 @@ export default function EducationPage({
 
               {/* Right Column: Clean Professional B2B Highlight Card */}
               <div className="lg:col-span-5">
-                <div className="bg-slate-900 text-white rounded-2xl p-7 sm:p-9 shadow-xl border border-slate-800 space-y-6 relative overflow-hidden">
+                <div className="bg-slate-900 text-white rounded-2xl p-5 sm:p-7 md:p-9 shadow-xl border border-slate-800 space-y-5 sm:space-y-6 relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-48 h-48 bg-[#1d61e8]/10 rounded-full blur-3xl pointer-events-none" />
 
                   <div className="border-b border-slate-800 pb-4">
@@ -402,12 +504,15 @@ export default function EducationPage({
               <span className="text-xs font-bold text-[#1d61e8] uppercase tracking-wider">
                 WHY DRONE CLEAN PRO EDUCATION
               </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-                왜 드론클린프로에서 배우나요?
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight break-keep">
+                왜 드론클린프로에서<br />
+                배워야 할까요?
               </h2>
-              <p className="text-base sm:text-lg text-slate-600 leading-relaxed whitespace-pre-line">
-{`실제 드론 세척 현장을 운영하며 쌓은 경험을 바탕으로 교육합니다.
-장비 세팅부터 세척 방법, 현장 작업과 견적까지 실제 작업에 필요한 내용을 직접 알려드립니다.`}
+              <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed break-keep">
+                실제 드론 세척 현장을 운영하며 <br className="sm:hidden" />
+                쌓은 경험을 바탕으로 교육합니다.<br />
+                장비 세팅부터 세척 방법, 현장 작업과 견적까지 <br className="sm:hidden" />
+                실제 작업에 필요한 내용을 직접 알려드립니다.
               </p>
             </div>
 
@@ -480,30 +585,16 @@ export default function EducationPage({
             </div>
 
             {/* Differentiation Statement Callout Banner */}
-            <div className="bg-gradient-to-r from-slate-900 to-slate-800 text-white p-6 sm:p-8 rounded-2xl shadow-md border border-slate-700 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="bg-gradient-to-r from-slate-900 to-slate-800 text-white p-5 sm:p-8 rounded-2xl shadow-md border border-slate-700 flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="space-y-2 text-center md:text-left">
                 <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded bg-[#1d61e8] text-white text-xs font-bold">
                   <span>드론클린프로만의 차별화</span>
                 </div>
-                <h4 className="text-lg sm:text-xl font-black text-white leading-snug whitespace-pre-line">
-{`“단순한 비행 교육이 아닙니다.
-실제 드론 세척 현장에서 사용하는 방법을 배웁니다.”`}
+                <h4 className="text-base sm:text-xl font-black text-white leading-snug break-keep">
+                  “단순한 비행 교육이 아닙니다. 실제 드론 세척 현장에서 사용하는 방법을 배웁니다.”
                 </h4>
-                <p
-                  style={{
-                    marginRight: '-200px',
-                    borderStyle: 'solid',
-                    lineHeight: '22.75px',
-                    paddingLeft: '1px',
-                    marginBottom: '0px',
-                    textAlign: 'left',
-                    fontSize: '14px',
-                    height: '49.5128px',
-                  }}
-                  className="text-slate-300 whitespace-pre-line leading-relaxed"
-                >
-{`실제 현장에서 사용하는 장비와 작업방법부터
-세척, 현장 운영, 견적까지 직접 경험해보세요.`}
+                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed max-w-xl break-keep">
+                  실제 현장에서 사용하는 장비와 작업방법부터 세척, 현장 운영, 견적까지 직접 경험해보세요.
                 </p>
               </div>
 
@@ -774,8 +865,9 @@ export default function EducationPage({
                 <span className="text-xs font-bold text-[#1d61e8] uppercase tracking-wider">
                   CONTINUOUS PRACTITIONER SUPPORT
                 </span>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-                  교육이 끝났다고 끝이 아닙니다.
+                <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight break-keep">
+                  교육이 끝났다고<br />
+                  끝이 아닙니다.
                 </h2>
               </div>
 
@@ -823,7 +915,7 @@ export default function EducationPage({
               <span className="text-xs font-bold text-[#1d61e8] uppercase tracking-wider">
                 TARGET AUDIENCE
               </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight break-keep">
                 이런 분들을 위한 교육입니다.
               </h2>
             </div>
@@ -875,16 +967,16 @@ export default function EducationPage({
         {/* =========================================
             9. 교육 전 확인사항 SECTION
         ========================================= */}
-        <section className="py-10 bg-white border-b border-slate-200">
+        {/* =========================================
+            9. 교육 전 확인사항 SECTION
+        ========================================= */}
+        <section className="py-8 sm:py-10 bg-white border-b border-slate-200">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div
-              style={{ marginLeft: '-100px', marginRight: '-100px', paddingLeft: '22px' }}
-              className="p-4 sm:p-5 rounded-lg bg-slate-50 border border-slate-200 text-slate-500 text-xs sm:text-sm leading-relaxed flex items-start gap-3"
-            >
-              <AlertCircle className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
-              <div>
-                <span className="font-bold text-slate-700 block mb-1">[교육 전 필수 확인사항]</span>
-                <p>
+            <div className="w-full p-4 sm:p-6 rounded-xl bg-slate-50 border border-slate-200 text-slate-600 text-xs sm:text-sm leading-relaxed flex items-start gap-3 sm:gap-3.5 shadow-xs">
+              <AlertCircle className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
+              <div className="space-y-1.5 flex-1">
+                <span className="font-black text-slate-900 text-sm sm:text-base block">[교육 전 필수 확인사항]</span>
+                <p className="text-slate-600 leading-relaxed text-xs sm:text-sm break-keep">
                   본 교육은 드론 세척 작업에 필요한 장비와 작업방법을 교육하는 과정입니다. 교육 후 매출이나 수주를 보장하지 않으며, 드론 관련 신고·승인 및 행정절차는 개인의 기체와 작업조건에 따라 별도로 확인이 필요합니다.
                 </p>
               </div>
@@ -945,12 +1037,17 @@ export default function EducationPage({
           {/* Company info */}
           <div className="md:col-span-6 space-y-3">
             <div className="font-black text-base text-white flex items-center gap-2">
-              <img
-                src={getImage('logo')}
-                alt="드론클린프로 로고"
-                className="w-5 h-5 object-contain"
-                referrerPolicy="no-referrer"
-              />
+              <div className="w-6 h-6 rounded-md flex items-center justify-center overflow-hidden shrink-0 border-0">
+                <img
+                  src={getImage('logo')}
+                  alt="드론클린프로 로고"
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = '/logo.png';
+                  }}
+                />
+              </div>
               <span>드론클린프로 (DRONE CLEANPRO)</span>
             </div>
             <p className="text-slate-400 leading-relaxed max-w-md">
@@ -988,7 +1085,7 @@ export default function EducationPage({
                   onClick={() => document.getElementById('edu-process')?.scrollIntoView({ behavior: 'smooth' })}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
-                  • 교육 진행
+                  • 진행 절차
                 </button>
               </li>
               <li>

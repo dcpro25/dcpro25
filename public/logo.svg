@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 450" fill="none">
-  <!-- Background transparent, shapes rendered in white or current text color -->
+  <!-- Brand Dark Rounded Background -->
+  <rect width="500" height="450" rx="48" fill="#0b1329" />
   <g fill="#FFFFFF" stroke="#FFFFFF" stroke-linejoin="round" stroke-linecap="round">
     
     <!-- Top Left Rotor Bar & Mount -->
