@@ -1168,6 +1168,18 @@ export default function App() {
   });
 
   useEffect(() => {
+    // Dynamic favicon enforcement
+    const updateFavicon = () => {
+      let iconLink = document.querySelector("link[rel='icon']") as HTMLLinkElement | null;
+      if (!iconLink) {
+        iconLink = document.createElement('link');
+        iconLink.rel = 'icon';
+        document.head.appendChild(iconLink);
+      }
+      iconLink.href = './favicon-32x32.png?v=2';
+    };
+    updateFavicon();
+
     const handleHashChange = () => {
       if (window.location.hash.startsWith('#education')) {
         setCurrentPage('education');
@@ -1179,6 +1191,7 @@ export default function App() {
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
+
 
   const navigateToEducation = () => {
     setCurrentPage('education');
